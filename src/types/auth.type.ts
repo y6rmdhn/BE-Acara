@@ -3,6 +3,7 @@ type TRegister = {
   username: string;
   password: string;
   confirmPassword: string;
+  email: string;
 };
 
 export { TRegister };
