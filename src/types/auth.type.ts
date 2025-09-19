@@ -6,4 +6,15 @@ type TRegister = {
   email: string;
 };
 
-export { TRegister };
+interface IUser {
+  fullname: string;
+  username: string;
+  password: string;
+  email: string;
+  role: string;
+  profilePicture: string;
+  isActive: boolean;
+  activationCode: string;
+}
+
+export { TRegister, IUser };

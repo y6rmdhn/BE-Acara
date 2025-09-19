@@ -2,17 +2,30 @@ import express from "express";
 import dotenv from "dotenv";
 import router from "./routes/api.js";
 import bodyParser from "body-parser";
+import db from "./utils/database.js";
 
-dotenv.config();
+async function init() {
+  try {
+    const result = await db();
 
-const app = express();
+    console.log(result);
 
-app.use(bodyParser.json());
+    dotenv.config();
 
-const PORT = process.env.PORT;
+    const app = express();
 
-app.use("/api", router);
+    app.use(bodyParser.json());
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    const PORT = process.env.PORT;
+
+    app.use("/api", router);
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+init();

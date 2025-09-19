@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { TRegister } from "../types/auth.type";
 import schema from "../schemas/auth.shema";
+import UserModel from "../models/user.model";
 
 export default {
   async register(req: Request, res: Response) {
@@ -18,13 +19,16 @@ export default {
         email,
       });
 
+      const result = await UserModel.create({
+        fullname,
+        username,
+        email,
+        password,
+      });
+
       res.status(200).json({
         message: "Register success!",
-        data: {
-          fullname,
-          username,
-          email,
-        },
+        data: result,
       });
     } catch (error) {
       const err = error as unknown as Error;
