@@ -6,6 +6,11 @@ type TRegister = {
   email: string;
 };
 
+type TLogin = {
+  identifier: string;
+  password: string;
+};
+
 interface IUser {
   fullname: string;
   username: string;
@@ -17,4 +22,4 @@ interface IUser {
   activationCode: string;
 }
 
-export { TRegister, IUser };
+export { TRegister, IUser, TLogin };
