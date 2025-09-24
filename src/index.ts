@@ -18,6 +18,8 @@ async function init() {
 
     const PORT = process.env.PORT;
 
+    app.get("/favicon.ico", (req, res) => res.status(204).send());
+
     app.use("/", (req, res) => {
       res.status(200).json({
         message: "Welcome to Acara API",
