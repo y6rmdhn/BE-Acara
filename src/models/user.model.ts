@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { IUser } from "../types/auth.type";
+import { encrypt } from "../utils/encryption";
 
 const Schema = mongoose.Schema;
 
@@ -20,6 +21,14 @@ const UserSchema = new Schema<IUser>(
   },
   { timestamps: true }
 );
+
+UserSchema.pre("save", function (next) {
+  const user = this;
+
+  user.password = encrypt(user.password);
+
+  next();
+});
 
 const UserModel = mongoose.model("User", UserSchema);
 
