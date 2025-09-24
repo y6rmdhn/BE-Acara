@@ -3,6 +3,8 @@ import { TLogin, TRegister } from "../types/auth.type";
 import schema from "../schemas/auth.shema";
 import UserModel from "../models/user.model";
 import { encrypt } from "../utils/encryption";
+import { generatetoken } from "../utils/jwt";
+import { IReqUser } from "../middleware/auth.middleware";
 
 export default {
   async register(req: Request, res: Response) {
@@ -69,9 +71,34 @@ export default {
         });
       }
 
+      const token = generatetoken({
+        id: userByIdentifier._id,
+        role: userByIdentifier.role,
+      });
+
       res.status(200).json({
         message: "Login success!",
-        data: userByIdentifier,
+        data: token,
+      });
+    } catch (error) {
+      const err = error as unknown as Error;
+
+      res.status(400).json({
+        message: err.message,
+        data: null,
+      });
+    }
+  },
+
+  async me(req: IReqUser, res: Response) {
+    try {
+      const user = req.user;
+
+      const result = await UserModel.findById(user?.id);
+
+      res.status(200).json({
+        message: "Get user success!",
+        data: result,
       });
     } catch (error) {
       const err = error as unknown as Error;
