@@ -18,6 +18,10 @@ async function init() {
 
     const PORT = process.env.PORT;
 
+    app.get("/", (req, res) => {
+      res.send("Welcome to BE-Acara API 🎉");
+    });
+
     app.use("/api", router);
 
     app.listen(PORT, () => {
