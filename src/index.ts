@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import router from "./routes/api.js";
 import bodyParser from "body-parser";
-import db from "./utils/database";
+import db from "./utils/database.js";
 
 async function init() {
   try {
@@ -17,13 +17,6 @@ async function init() {
     app.use(bodyParser.json());
 
     const PORT = process.env.PORT;
-
-    app.use("/", (req, res) => {
-      res.status(200).json({
-        message: "Welcome to Acara API",
-        data: null,
-      });
-    });
 
     app.use("/api", router);
 
