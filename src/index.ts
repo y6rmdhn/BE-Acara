@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import router from "./routes/api.js";
+import router from "./routes/api";
 import bodyParser from "body-parser";
-import db from "./utils/database.js";
+import db from "./utils/database";
 
 async function init() {
   try {
@@ -17,8 +17,6 @@ async function init() {
     app.use(bodyParser.json());
 
     const PORT = process.env.PORT;
-
-    app.get("/favicon.ico", (req, res) => res.status(204).send());
 
     app.use("/", (req, res) => {
       res.status(200).json({
