@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { IUser } from "../types/auth.type";
-import { encrypt } from "../utils/encryption";
+import { encrypt } from "../utils/encryption.js";
+import type { IUser } from "../types/auth.type.js";
 
 const Schema = mongoose.Schema;
 

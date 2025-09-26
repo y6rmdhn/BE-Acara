@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import { TLogin, TRegister } from "../types/auth.type";
-import schema from "../schemas/auth.shema";
-import UserModel from "../models/user.model";
-import { encrypt } from "../utils/encryption";
-import { generatetoken } from "../utils/jwt";
-import { IReqUser } from "../middleware/auth.middleware";
+import schema from "../schemas/auth.shema.js";
+import UserModel from "../models/user.model.js";
+import { encrypt } from "../utils/encryption.js";
+import { generatetoken } from "../utils/jwt.js";
+import type { Request, Response } from "express";
+import type { TLogin, TRegister } from "../types/auth.type.js";
+import type { IReqUser } from "../middleware/auth.middleware.js";
 
 export default {
   async register(req: Request, res: Response) {

@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
-import { IUser } from "../types/auth.type";
 import jwt from "jsonwebtoken";
-import { SECRET } from "./env";
+import { SECRET } from "./env.js";
+import type { IUser } from "../types/auth.type.js";
 
 export interface IUserToken
   extends Omit<
