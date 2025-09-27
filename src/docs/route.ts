@@ -9,6 +9,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default function docs(app: Express) {
+
+    console.log("Attempting to set up Swagger docs...");
+  // Check if the swaggerOutput JSON was loaded.
+  // If this logs 'undefined', the file path is wrong or the file is empty!
+  console.log("Swagger JSON loaded:", swaggerOutput ? "Yes" : "No, it is undefined!");
+  // --- END DEBUGGING ---
+
   const css = fs.readFileSync(
     path.resolve(
       __dirname,
